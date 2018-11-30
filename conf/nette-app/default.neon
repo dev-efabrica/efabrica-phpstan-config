@@ -1,0 +1,7 @@
+parameters:
+    customRulesetUsed: true
+    bootstrap: app/bootstrap.php
+
+includes:
+    - ../../../../phpstan/phpstan-nette/extension.neon
+    - ../../../../phpstan/phpstan-nette/rules.neon

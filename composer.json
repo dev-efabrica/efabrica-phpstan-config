@@ -1,0 +1,9 @@
+{
+    "name": "efabrica/phpstan-config",
+    "description": "Custom configs for PHPstan",
+    "keywords": ["PHPstan","config"],
+    "require": {
+        "phpstan/phpstan": "^0.10.5",
+        "phpstan/phpstan-nette": "^0.10.1"
+    }
+}
