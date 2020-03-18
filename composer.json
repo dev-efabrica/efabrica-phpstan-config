@@ -3,7 +3,7 @@
     "description": "Custom configs for PHPstan",
     "keywords": ["PHPstan","config"],
     "require": {
-        "phpstan/phpstan": "^0.10.5 | ^0.11",
-        "phpstan/phpstan-nette": "^0.10.1 | ^0.11"
+        "phpstan/phpstan": "^0.10.5 | ^0.11 | ^0.12",
+        "phpstan/phpstan-nette": "^0.10.1 | ^0.11 | ^0.12"
     }
 }
