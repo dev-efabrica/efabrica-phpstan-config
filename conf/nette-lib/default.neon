@@ -1,0 +1,6 @@
+parameters:
+    customRulesetUsed: true
+
+includes:
+    - ../../../../phpstan/phpstan-nette/extension.neon
+    - ../../../../phpstan/phpstan-nette/rules.neon

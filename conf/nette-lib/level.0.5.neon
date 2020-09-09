@@ -1,0 +1,6 @@
+parameters:
+    reportMagicMethods: false
+
+includes:
+    - default.neon
+    - ../../../../phpstan/phpstan/conf/config.level1.neon

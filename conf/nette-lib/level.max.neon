@@ -1,0 +1,3 @@
+includes:
+    - default.neon
+    - ../../../../phpstan/phpstan/conf/config.levelmax.neon
