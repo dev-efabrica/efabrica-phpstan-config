@@ -1,5 +1,6 @@
 parameters:
     customRulesetUsed: true
+    inferPrivatePropertyTypeFromConstructor: true
 
 includes:
     - ../../../../phpstan/phpstan-nette/extension.neon
