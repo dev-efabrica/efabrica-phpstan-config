@@ -1,5 +1,6 @@
 parameters:
     customRulesetUsed: true
+    inferPrivatePropertyTypeFromConstructor: true
     bootstrap: app/bootstrap.php
 
 includes:
