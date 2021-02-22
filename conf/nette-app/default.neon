@@ -1,8 +1,8 @@
 parameters:
-    customRulesetUsed: true
-    inferPrivatePropertyTypeFromConstructor: true
-    bootstrap: app/bootstrap.php
+    bootstrapFiles:
+        - %currentWorkingDirectory%/app/bootstrap.php
 
 includes:
+    - ../default.neon
     - ../../../../phpstan/phpstan-nette/extension.neon
     - ../../../../phpstan/phpstan-nette/rules.neon

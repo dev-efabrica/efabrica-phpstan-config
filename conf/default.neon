@@ -1,0 +1,4 @@
+parameters:
+    customRulesetUsed: true
+    checkMissingIterableValueType: false
+    inferPrivatePropertyTypeFromConstructor: true

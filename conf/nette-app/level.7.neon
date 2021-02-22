@@ -1,3 +1,5 @@
+parameters:
+    level: 7
+
 includes:
     - default.neon
-    - ../../../../phpstan/phpstan/conf/config.level7.neon

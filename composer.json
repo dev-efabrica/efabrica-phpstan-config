@@ -3,7 +3,10 @@
     "description": "Custom configs for PHPstan",
     "keywords": ["PHPstan","config"],
     "require": {
-        "phpstan/phpstan": "^0.10.5 | ^0.11 | ^0.12",
-        "phpstan/phpstan-nette": "^0.10.1 | ^0.11 | ^0.12"
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-nette": "^0.12",
+        "phpstan/phpstan-deprecation-rules": "^0.12.6",
+        "pepakriz/phpstan-exception-rules": "^0.11.6",
+        "phpstan/phpstan-strict-rules": "^0.12.9"
     }
 }
