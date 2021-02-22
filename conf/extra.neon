@@ -2,7 +2,7 @@ parameters:
     checkMissingIterableValueType: true
 
 includes:
-    - ../vendor/phpstan/phpstan/conf/bleedingEdge.neon
-    - ../vendor/phpstan/phpstan-strict-rules/rules.neon
-    - ../vendor/phpstan/phpstan-deprecation-rules/rules.neon
-    - ../vendor/pepakriz/phpstan-exception-rules/extension.neon
+    - ../../../phpstan/phpstan/conf/bleedingEdge.neon
+    - ../../../phpstan/phpstan-strict-rules/rules.neon
+    - ../../../phpstan/phpstan-deprecation-rules/rules.neon
+    - ../../../pepakriz/phpstan-exception-rules/extension.neon
