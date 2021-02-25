@@ -1,5 +1,6 @@
 parameters:
     checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
 
 includes:
     - ../../../phpstan/phpstan/conf/bleedingEdge.neon
