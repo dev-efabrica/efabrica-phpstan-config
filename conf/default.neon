@@ -3,6 +3,3 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
-
-    stubFiles:
-        - ../stubs/Database/Table/Selection.stub

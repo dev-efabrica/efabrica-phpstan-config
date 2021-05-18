@@ -1,7 +1,8 @@
 parameters:
     bootstrapFiles:
         - %currentWorkingDirectory%/app/bootstrap.php
-
+    stubFiles:
+        - ../../stubs/Database/Table/Selection.stub
 includes:
     - ../default.neon
     - ../../../../phpstan/phpstan-nette/extension.neon
