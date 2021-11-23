@@ -3,3 +3,6 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
+
+includes:
+    - ../includes/conditional-phpstan.php
