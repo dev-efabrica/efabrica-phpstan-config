@@ -4,5 +4,3 @@ parameters:
 
 includes:
     - ../default.neon
-    - ../../../../phpstan/phpstan-nette/extension.neon
-    - ../../../../phpstan/phpstan-nette/rules.neon

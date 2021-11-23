@@ -34,4 +34,7 @@ parameters:
             message: 'use some logger instead'
 
 includes:
+    - ../../../phpstan/phpstan-nette/extension.neon
+    - ../../../phpstan/phpstan-nette/rules.neon
+    - ../../../spaze/phpstan-disallowed-calls/extension.neon
     - ../includes/conditional-phpstan.php
