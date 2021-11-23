@@ -4,5 +4,34 @@ parameters:
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
 
+    disallowedFunctionCalls:
+        -
+            function: 'print_r()'
+            message: 'use some logger instead'
+            allowParamsAnywhere:
+                2: true
+        -
+            function: 'var_dump()'
+            message: 'use some logger instead'
+        -
+            function: 'var_export()'
+            message: 'use some logger instead'
+            allowParamsAnywhere:
+                2: true
+        -
+            function: 'dump()'
+            message: 'use some logger instead'
+        -
+            function: 'bdump()'
+            message: 'use some logger instead'
+
+    disallowedStaticCalls:
+        -
+            method: 'Tracy\Debugger::dump()'
+            message: 'use some logger instead'
+        -
+            method: 'Tracy\Debugger::barDump()'
+            message: 'use some logger instead'
+
 includes:
     - ../includes/conditional-phpstan.php
