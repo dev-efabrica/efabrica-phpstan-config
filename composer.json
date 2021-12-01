@@ -7,6 +7,7 @@
         "phpstan/phpstan-nette": "^1.0",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-strict-rules": "^1.0",
+        "phpstan/phpstan-webmozart-assert": "^1.0",
         "spaze/phpstan-disallowed-calls": "^2.0",
         "pepakriz/phpstan-exception-rules": "^0.12"
     }
