@@ -1,6 +1,9 @@
 parameters:
     bootstrapFiles:
         - %currentWorkingDirectory%/app/bootstrap.php
+    paths:
+        - %currentWorkingDirectory%/app
 
 includes:
     - ../default.neon
+    - ../../includes/nette-app/traits.php

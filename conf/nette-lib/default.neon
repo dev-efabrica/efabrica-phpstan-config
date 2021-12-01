@@ -1,4 +1,7 @@
 parameters:
+    paths:
+        - %currentWorkingDirectory%/src
 
 includes:
     - ../default.neon
+    - ../../includes/nette-lib/traits.php
