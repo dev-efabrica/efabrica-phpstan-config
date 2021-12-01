@@ -6,4 +6,4 @@ parameters:
 
 includes:
     - ../default.neon
-    - ../../includes/nette-app/traits.php
+#    - ../../includes/nette-app/traits.php
