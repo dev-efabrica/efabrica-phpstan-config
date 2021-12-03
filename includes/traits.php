@@ -33,7 +33,11 @@ foreach ($phpFiles as $phpFile) {
 
 $uses = [];
 foreach ($fqcns as $fqcn) {
-    $uses = array_merge($uses, class_uses($fqcn));
+    if (!class_exists($fqcn)) {
+        continue;
+    }
+    $classUses = class_uses($fqcn) ?: [];
+    $uses = array_merge($uses, $classUses);
 }
 
 $traitPaths = [];
