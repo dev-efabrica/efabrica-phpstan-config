@@ -22,6 +22,9 @@ parameters:
             function: 'dump()'
             message: 'use some logger instead'
         -
+            function: 'dumpe()'
+            message: 'use some logger instead'
+        -
             function: 'bdump()'
             message: 'use some logger instead'
 
