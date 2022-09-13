@@ -1,9 +1,23 @@
 parameters:
     checkMissingIterableValueType: true
     checkGenericClassInNonGenericObjectType: true
+    strictRules:
+        allRules: true
+    polluteScopeWithLoopInitialAssignments: false
+    polluteScopeWithAlwaysIterableForeach: false
+    checkAlwaysTrueCheckTypeFunctionCall: true
+    checkAlwaysTrueInstanceof: true
+    checkAlwaysTrueStrictComparison: true
+    checkAlwaysTrueLooseComparison: true
+    checkDynamicProperties: %featureToggles.bleedingEdge%
+    checkExplicitMixedMissingReturn: true
+    checkFunctionNameCase: true
+    checkInternalClassCaseSensitivity: true
+    reportMaybesInMethodSignatures: true
+    reportStaticMethodSignatures: true
+    reportMaybesInPropertyPhpDocTypes: true
 
 includes:
     - ../../../phpstan/phpstan/conf/bleedingEdge.neon
-    - ../../../phpstan/phpstan-strict-rules/rules.neon
     - ../../../phpstan/phpstan-deprecation-rules/rules.neon
     - ../../../pepakriz/phpstan-exception-rules/extension.neon

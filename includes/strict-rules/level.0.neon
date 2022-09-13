@@ -1,0 +1,6 @@
+parameters:
+    strictRules:
+        uselessCast: true
+        requireParentConstructorCall: true
+        overwriteVariablesWithLoop: true
+        closureUsesThis: true

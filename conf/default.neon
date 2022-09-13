@@ -3,6 +3,21 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
+    strictRules:
+        # turn off strict rules
+        allRules: false
+
+    # turn off strict rules parameters
+    polluteScopeWithLoopInitialAssignments: true
+    polluteScopeWithAlwaysIterableForeach: true
+    checkAlwaysTrueCheckTypeFunctionCall: false
+    checkAlwaysTrueInstanceof: false
+    checkAlwaysTrueStrictComparison: false
+    checkAlwaysTrueLooseComparison: false
+    checkExplicitMixedMissingReturn: false
+    reportMaybesInMethodSignatures: false
+    reportStaticMethodSignatures: false
+    reportMaybesInPropertyPhpDocTypes: false
 
     disallowedFunctionCalls:
         -
@@ -43,4 +58,5 @@ includes:
     - ../../../spaze/phpstan-disallowed-calls/extension.neon
     - ../../../efabrica/phpstan-rules/extension.neon
     - ../../../efabrica/phpstan-rules/rules.neon
+    - ../../../phpstan/phpstan-strict-rules/rules.neon
     - ../includes/conditional-phpstan.php

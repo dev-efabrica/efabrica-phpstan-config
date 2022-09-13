@@ -1,0 +1,6 @@
+parameters:
+    strictRules:
+        numericOperandsInArithmeticOperators: true
+
+includes:
+    - level.4.neon

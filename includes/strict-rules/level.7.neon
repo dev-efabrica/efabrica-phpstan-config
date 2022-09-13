@@ -1,0 +1,7 @@
+parameters:
+    strictRules:
+        booleansInConditions: true
+        strictCalls: true
+
+includes:
+    - level.6.neon

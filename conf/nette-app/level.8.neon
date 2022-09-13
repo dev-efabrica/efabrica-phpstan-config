@@ -3,3 +3,4 @@ parameters:
 
 includes:
     - default.neon
+    - ../../includes/strict-rules/level.8.neon
