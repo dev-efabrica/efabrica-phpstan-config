@@ -1,6 +1,5 @@
 parameters:
     strictRules:
-        booleansInConditions: true
         strictCalls: true
 
 includes:
