@@ -58,5 +58,7 @@ includes:
     - ../../../spaze/phpstan-disallowed-calls/extension.neon
     - ../../../efabrica/phpstan-rules/extension.neon
     - ../../../efabrica/phpstan-rules/rules.neon
+    - ../../../efabrica/phpstan-latte/extension.neon
+    - ../../../efabrica/phpstan-latte/rules.neon
     - ../../../phpstan/phpstan-strict-rules/rules.neon
     - ../includes/conditional-phpstan.php

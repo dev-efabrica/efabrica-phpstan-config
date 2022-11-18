@@ -2,6 +2,6 @@
 
 $dir = 'app';
 
-require getcwd() . '/app/bootstrap.php';
+require_once getcwd() . '/app/bootstrap.php';
 
 return include __DIR__ . '/../traits.php';

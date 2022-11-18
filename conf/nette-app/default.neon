@@ -3,7 +3,13 @@ parameters:
         - %currentWorkingDirectory%/app/bootstrap.php
     paths:
         - %currentWorkingDirectory%/app
+    latte:
+        macros:
+            - Efabrica\NeoForms\NeoFormExtension::install
 
 includes:
     - ../default.neon
 #    - ../../includes/nette-app/traits.php
+    - ../../includes/nette-app/filters.php
+    - ../../includes/nette-app/variables.php
+    - ../../includes/nette-app/mapping.php
