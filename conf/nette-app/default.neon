@@ -7,6 +7,8 @@ parameters:
         macros:
             - Efabrica\NeoForms\NeoFormExtension::install
 
+#        engineBootstrap: %rootDir%/../../efabrica/phpstan-config/includes/nette-app/engine.php
+
 includes:
     - ../default.neon
 #    - ../../includes/nette-app/traits.php
