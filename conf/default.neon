@@ -3,6 +3,7 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
+    checkUninitializedProperties: true
     strictRules:
         # turn off strict rules
         allRules: false
