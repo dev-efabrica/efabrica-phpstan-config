@@ -52,6 +52,11 @@ parameters:
             method: 'Tracy\Debugger::barDump()'
             message: 'use some logger instead'
 
+    disabledMethodCalls:
+        -
+            context: 'Efabrica\Cms\Core\Plugin\PluginDefinitionInterface::pageConfiguration'
+            disabled: 'Efabrica\Cms\Core\Plugin\Config\PluginConfigItem::setRequired'
+
 includes:
     - ../../../phpstan/phpstan-nette/extension.neon
     - ../../../phpstan/phpstan-nette/rules.neon
