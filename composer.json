@@ -12,5 +12,10 @@
         "pepakriz/phpstan-exception-rules": "^0.12",
         "efabrica/phpstan-rules": "^0.4.1",
         "efabrica/phpstan-latte": "^0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Efabrica\\PhpstanConfig\\": "src"
+        }
     }
 }
