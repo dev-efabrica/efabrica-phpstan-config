@@ -12,7 +12,6 @@ parameters:
             - %currentWorkingDirectory%/vendor/efabrica/
 #        engineBootstrap: %rootDir%/../../efabrica/phpstan-config/includes/nette-app/engine.php
 
-# TODO move to some special config for notcms
 services:
     - Efabrica\PhpstanConfig\LatteTemplateResolver\NotCmsPluginLatteTemplateResolver(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
 

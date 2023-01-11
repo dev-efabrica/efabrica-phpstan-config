@@ -38,21 +38,14 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
 
         $controls = [];
         foreach ($this->pluginContainer->getGlobalPlugins() as $globalPlugin) {
-            // TODO remove after debug is done
-            if (get_class($globalPlugin) !== 'BaseModule\Plugin\HeaderModal\HeaderModalPlugin') {
-                continue;
-            }
-
             $templatePaths = [];
             if (method_exists($globalPlugin, 'getTemplates')) {
                 $templatePaths = $globalPlugin->getTemplates();
-            } else {
-                // TODO load from template path
             }
-
 
             $reflectionClass = new ReflectionClass($globalPlugin);
             $frontendControlClassProperty = $reflectionClass->getProperty('frontendControlClass');
+            $frontendControlClassProperty->setAccessible(true);
             $frontendControlClassName = $frontendControlClassProperty->getValue($globalPlugin);
 
             $frontendControlClassReflection = new ReflectionClass($frontendControlClassName);
@@ -68,21 +61,28 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
     public function resolve(CollectedResolvedNode $resolvedNode, LatteContext $latteContext): LatteTemplateResolverResult
     {
         $params = $resolvedNode->getParams();
-        $templates = $params[self::TEMPLATES];
         $controlClass = $params[self::CONTROL_CLASS];
 
         $variableFinder = $latteContext->variableFinder();
-        $variables = $variableFinder->find($controlClass, 'render');
-        print_r($variables);
-        $variables = $variableFinder->find($controlClass, 'preparePluginRender');
+        $variables = $variableFinder->find($controlClass, 'render', 'preparePluginRender');
+
+        $templates = $params[self::TEMPLATES];
+        $templatePaths = [];
+        foreach ($templates as $template) {
+            $templatePaths[] = $template['path'];
+        }
+        $templatePathFinder = $latteContext->templatePathFinder();
+        foreach ($templatePathFinder->find($controlClass, 'render') as $templatePath) {
+            $templatePaths[] = $templatePath;
+        }
+        $templatePaths = array_filter($templatePaths);
 
         $result = new LatteTemplateResolverResult();
-        foreach ($templates as $template) {
-            $templatePath = $template['path'];
+        foreach ($templatePaths as $templatePath) {
             $result->addTemplate(new Template(
                 realpath($templatePath),
                 $controlClass,
-                null,
+                'render',
                 $variables,
                 [],
                 [],
