@@ -6,7 +6,7 @@ parameters:
     latte:
         macros:
             - Efabrica\NeoForms\NeoFormExtension::install
-        tmpDir: %currentWorkingDirectory%/tmp
+        tmpDir: %currentWorkingDirectory%/temp/phpstan-latte
         collectedPaths:
             - %currentWorkingDirectory%/vendor/notcms/
             - %currentWorkingDirectory%/vendor/efabrica/
