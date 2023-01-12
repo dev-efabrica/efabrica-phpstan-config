@@ -1,4 +1,13 @@
 parameters:
+    ignoreErrors:
+        -   # ignoring phpstan-latte annotations while we don't have extension turned on - TODO remove when phpstan-latte is merged
+            messages:
+                - '#Unknown PHPDoc tag: @phpstan-latte-template#'
+                - '#Unknown PHPDoc tag: @phpstan-latte-var#'
+                - '#Unknown PHPDoc tag: @phpstan-latte-component#'
+                - '#Unknown PHPDoc tag: @phpstan-latte-ignore#'
+            reportUnmatched: false
+
     customRulesetUsed: true
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
