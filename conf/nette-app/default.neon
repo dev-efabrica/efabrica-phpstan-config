@@ -10,10 +10,15 @@ parameters:
         collectedPaths:
             - %currentWorkingDirectory%/vendor/notcms/
             - %currentWorkingDirectory%/vendor/efabrica/
-#        engineBootstrap: %rootDir%/../../efabrica/phpstan-config/includes/nette-app/engine.php
+        errorPatternsToIgnore:
+            - '/Instanceof between Efabrica\\NeoForms\\Build\\NeoForm and Efabrica\\NeoForms\\Build\\NeoFormControl will always evaluate to false\./'
 
 services:
+    # NotCMS plugins resolver
     - Efabrica\PhpstanConfig\LatteTemplateResolver\NotCmsPluginLatteTemplateResolver(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
+
+    # Grid component collector
+    - Efabrica\PhpstanConfig\LatteContext\Collector\GridComponentCollector
 
 includes:
     - ../default.neon
