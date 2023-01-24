@@ -12,6 +12,8 @@ parameters:
             - %currentWorkingDirectory%/vendor/efabrica/
         errorPatternsToIgnore:
             - '/Instanceof between Efabrica\\NeoForms\\Build\\NeoForm and Efabrica\\NeoForms\\Build\\NeoFormControl will always evaluate to false\./'
+        warningPatterns:
+            - '/Cannot automatically resolve latte template from expression\./'
 
 services:
     # NotCMS plugins resolver

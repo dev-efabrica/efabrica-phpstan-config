@@ -30,9 +30,9 @@ final class GridComponentCollector extends AbstractLatteContextCollector
         $this->valueResolver = $valueResolver;
     }
 
-    public function getNodeType(): string
+    public function getNodeTypes(): array
     {
-        return MethodCall::class;
+        return [MethodCall::class];
     }
 
     /**
