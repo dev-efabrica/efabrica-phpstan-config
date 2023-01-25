@@ -9,11 +9,15 @@ use Efabrica\PHPStanLatte\Collector\CollectedData\CollectedResolvedNode;
 use Efabrica\PHPStanLatte\LatteContext\LatteContext;
 use Efabrica\PHPStanLatte\LatteTemplateResolver\CustomLatteTemplateResolverInterface;
 use Efabrica\PHPStanLatte\LatteTemplateResolver\LatteTemplateResolverResult;
+use Efabrica\PHPStanLatte\Template\Component;
+use Efabrica\PHPStanLatte\Template\ItemCombinator;
 use Efabrica\PHPStanLatte\Template\Template;
-use Efabrica\PHPStanLatte\Template\Variable;
-use Nette\Application\UI\Control;
+use Efabrica\PHPStanLatte\Template\TemplateContext;
+use PHPStan\Type\ObjectType;
 use ReflectionClass;
 
+
+// TODO: rename to multitemplate plugins
 final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateResolverInterface
 {
     private const CONTROL_CLASS = 'control_class';
@@ -21,6 +25,9 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
     private const TEMPLATES = 'templates';
 
     private ?PluginContainerInterface $pluginContainer = null;
+
+    /** @var Component[] */
+    private array $globalPlugins = [];
 
     public function __construct(string $bootstrap)
     {
@@ -43,10 +50,24 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
                 $templatePaths = $globalPlugin->getTemplates();
             }
 
+
+            // TODO: if not multitemplate, continue
+
+
             $reflectionClass = new ReflectionClass($globalPlugin);
+
             $frontendControlClassProperty = $reflectionClass->getProperty('frontendControlClass');
             $frontendControlClassProperty->setAccessible(true);
             $frontendControlClassName = $frontendControlClassProperty->getValue($globalPlugin);
+
+            $identifierClassProperty = $reflectionClass->getProperty('identifier');
+            $identifierClassProperty->setAccessible(true);
+            $identifier = $identifierClassProperty->getValue($globalPlugin);
+
+            var_dump($identifier);
+            var_dump($frontendControlClassName);
+
+            $this->globalPlugins[] = new Component($identifier, new ObjectType($frontendControlClassName));
 
             $frontendControlClassReflection = new ReflectionClass($frontendControlClassName);
             $frontendControlClassFileName = $frontendControlClassReflection->getFileName();
@@ -55,6 +76,12 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
                 self::TEMPLATES => $templatePaths,
             ]);
         }
+
+        // second level of subcomponents
+        foreach ($this->globalPlugins as $globalPlugin) {
+            $globalPlugin->setSubcomponents($this->globalPlugins);
+        }
+
         return $controls;
     }
 
@@ -66,8 +93,10 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
         $variableFinder = $latteContext->variableFinder();
         $variables = $variableFinder->find($controlClass, 'render', 'preparePluginRender');
 
+        $templatePathFinder = $latteContext->templatePathFinder();
+        $templatePaths = $templatePathFinder->find($controlClass, 'render');
+
         $templates = $params[self::TEMPLATES];
-        $templatePaths = [];
         foreach ($templates as $template) {
             $templatePaths[] = $template['path'];
         }
@@ -75,7 +104,12 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
         foreach ($templatePathFinder->find($controlClass, 'render') as $templatePath) {
             $templatePaths[] = $templatePath;
         }
-        $templatePaths = array_filter($templatePaths);
+        $templatePaths = array_unique(array_filter($templatePaths));
+
+        $componentsFinder = $latteContext->componentFinder();
+        $components = ItemCombinator::merge($componentsFinder->find($controlClass, 'init', 'beforeRender'), $this->globalPlugins);
+
+        $templateContext = new TemplateContext($variables, $components, [], []);
 
         $result = new LatteTemplateResolverResult();
         foreach ($templatePaths as $templatePath) {
@@ -83,10 +117,7 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
                 realpath($templatePath),
                 $controlClass,
                 'render',
-                $variables,
-                [],
-                [],
-                []
+                $templateContext
             ));
         }
 

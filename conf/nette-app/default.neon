@@ -12,15 +12,22 @@ parameters:
             - %currentWorkingDirectory%/vendor/efabrica/
         errorPatternsToIgnore:
             - '/Instanceof between Efabrica\\NeoForms\\Build\\NeoForm and Efabrica\\NeoForms\\Build\\NeoFormControl will always evaluate to false\./'
+            - '/Cannot resolve latte template for (.*?)::renderPlugin\(\)\./'
         warningPatterns:
             - '/Cannot automatically resolve latte template from expression\./'
 
 services:
-    # NotCMS plugins resolver
-    - Efabrica\PhpstanConfig\LatteTemplateResolver\NotCmsPluginLatteTemplateResolver(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
+    - Efabrica\PhpstanConfig\NotCms\GlobalPluginsLoader(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
 
-    # Grid component collector
-    - Efabrica\PhpstanConfig\LatteContext\Collector\GridComponentCollector
+    # NotCMS plugins resolver
+#    - Efabrica\PhpstanConfig\LatteTemplateResolver\NotCmsPluginLatteTemplateResolver(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
+
+    # Component collectors
+    - Efabrica\PhpstanConfig\LatteContext\Collector\ComponentCollector\GridComponentCollector
+    - Efabrica\PhpstanConfig\LatteContext\Collector\ComponentCollector\GlobalPluginComponentCollector
+
+    # TemplatePathCollector for plugins
+    - Efabrica\PhpstanConfig\LatteContext\Collector\TemplatePathCollector\PluginTemplateFilePathCollector
 
 includes:
     - ../default.neon

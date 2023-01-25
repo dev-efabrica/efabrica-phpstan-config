@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Efabrica\PhpstanConfig\LatteContext\Collector;
+namespace Efabrica\PhpstanConfig\LatteContext\Collector\ComponentCollector;
 
 use Efabrica\PHPStanLatte\LatteContext\CollectedData\CollectedComponent;
 use Efabrica\PHPStanLatte\LatteContext\Collector\AbstractLatteContextCollector;
@@ -14,7 +14,6 @@ use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Type\ObjectType;
-use Throwable;
 
 /**
  * @extends AbstractLatteContextCollector<Node, CollectedComponent>
