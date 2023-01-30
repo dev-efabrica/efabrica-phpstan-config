@@ -4,6 +4,7 @@ parameters:
     paths:
         - %currentWorkingDirectory%/app
     latte:
+        presenterFactoryBootstrap: %rootDir%/../../efabrica/phpstan-config/includes/nette-app/presenter_factory.php
         macros:
             - Efabrica\NeoForms\NeoFormExtension::install
         tmpDir: %currentWorkingDirectory%/temp/phpstan-latte
@@ -34,4 +35,3 @@ includes:
 #    - ../../includes/nette-app/traits.php
     - ../../includes/nette-app/filters.php
     - ../../includes/nette-app/variables.php
-    - ../../includes/nette-app/mapping.php
