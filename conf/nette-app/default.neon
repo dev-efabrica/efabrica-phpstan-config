@@ -16,6 +16,7 @@ parameters:
             - '/Cannot resolve latte template for (.*?)::renderPlugin\(\)\./'
         warningPatterns:
             - '/Cannot automatically resolve latte template from expression\./'
+            - '/Cannot resolve rendered latte template\./'
 
 services:
     - Efabrica\PhpstanConfig\NotCms\GlobalPluginsLoader(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
