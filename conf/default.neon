@@ -66,6 +66,24 @@ parameters:
             context: 'Efabrica\Cms\Core\Plugin\PluginDefinitionInterface::pageConfiguration'
             disabled: 'Efabrica\Cms\Core\Plugin\Config\PluginConfigItem::setRequired'
 
+    forbiddenConstructorParametersTypes:
+        -
+            context: Efabrica\Cms\Core\Plugin\FrontendPluginControl
+            forbiddenTypes:
+                -
+                    type: Efabrica\Cms\Core\Pages\Repository\PageRepository
+                    tip: 'Use Efabrica\Cms\Core\Pages\Repository\PageFrontendRepository instead.'
+
+    requiredParametersInMethodCalls:
+        -
+            context: 'Nette\Database\Table\Selection::count'
+            parameters:
+                -
+                    name: column
+                    type: string
+                    tip: 'Always use some column name or *. Without it, all items are selected and counted in php which causes performance issues.'
+
+
 includes:
     - ../../../phpstan/phpstan-nette/extension.neon
     - ../../../phpstan/phpstan-nette/rules.neon

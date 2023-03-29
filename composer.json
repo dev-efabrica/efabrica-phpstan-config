@@ -10,6 +10,6 @@
         "phpstan/phpstan-webmozart-assert": "^1.0",
         "spaze/phpstan-disallowed-calls": "^2.0",
         "pepakriz/phpstan-exception-rules": "^0.12",
-        "efabrica/phpstan-rules": "^0.4.1"
+        "efabrica/phpstan-rules": "^0.5.0"
     }
 }
