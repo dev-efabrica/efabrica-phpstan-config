@@ -79,7 +79,7 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
 
         // second level of subcomponents
         foreach ($this->globalPlugins as $globalPlugin) {
-            $globalPlugin->setSubcomponents($this->globalPlugins);
+            $globalPlugin->addSubcomponents($this->globalPlugins);
         }
 
         return $controls;

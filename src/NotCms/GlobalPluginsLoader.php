@@ -54,7 +54,7 @@ final class GlobalPluginsLoader
 
         // second level of subcomponents
         foreach ($this->globalPlugins as $globalPlugin) {
-            $globalPlugin->setSubcomponents($this->globalPlugins);
+            $globalPlugin->addSubcomponents($this->globalPlugins);
         }
 
         return $this->globalPlugins;
