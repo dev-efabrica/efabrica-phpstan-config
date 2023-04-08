@@ -1,6 +1,9 @@
 <?php
 
 $container = require 'bootstrap.php';
+if ($container === null) {
+    return [];
+}
 $autoVariableTemplateFactory = $container->getByType('Tomaj\Latte\AutoVariableTemplateFactory', false);
 
 if (!$autoVariableTemplateFactory) {

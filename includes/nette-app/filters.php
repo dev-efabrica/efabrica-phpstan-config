@@ -1,6 +1,9 @@
 <?php
 
 $container = require 'bootstrap.php';
+if ($container === null) {
+    return [];
+}
 $filterLoader = $container->getByType('Kelemen\Helper\Nette\FilterLoader', false);
 
 if (!$filterLoader) {
