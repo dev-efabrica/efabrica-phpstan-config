@@ -16,9 +16,7 @@ use Efabrica\PHPStanLatte\Template\TemplateContext;
 use PHPStan\Type\ObjectType;
 use ReflectionClass;
 
-
-// TODO: rename to multitemplate plugins
-final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateResolverInterface
+final class NotCmsMultiTemplatePluginLatteTemplateResolver implements CustomLatteTemplateResolverInterface
 {
     private const CONTROL_CLASS = 'control_class';
 
@@ -43,31 +41,30 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
             return [];
         }
 
+        $globalPlugins = $this->pluginContainer->getGlobalPlugins();
+        $allPlugins = array_merge($globalPlugins, $this->pluginContainer->getPlugins());
+
         $controls = [];
-        foreach ($this->pluginContainer->getGlobalPlugins() as $globalPlugin) {
-            $templatePaths = [];
-            if (method_exists($globalPlugin, 'getTemplates')) {
-                $templatePaths = $globalPlugin->getTemplates();
+        $allPluginComponents = [];
+        foreach ($allPlugins as $identifier => $plugin) {
+            if (!method_exists($plugin, 'getTemplates')) {
+                continue;
             }
 
+            $templatePaths = $plugin->getTemplates();
 
-            // TODO: if not multitemplate, continue
-
-
-            $reflectionClass = new ReflectionClass($globalPlugin);
-
+            $reflectionClass = new ReflectionClass($plugin);
             $frontendControlClassProperty = $reflectionClass->getProperty('frontendControlClass');
             $frontendControlClassProperty->setAccessible(true);
-            $frontendControlClassName = $frontendControlClassProperty->getValue($globalPlugin);
+            $frontendControlClassName = $frontendControlClassProperty->getValue($plugin);
 
-            $identifierClassProperty = $reflectionClass->getProperty('identifier');
-            $identifierClassProperty->setAccessible(true);
-            $identifier = $identifierClassProperty->getValue($globalPlugin);
+            $pluginComponent = new Component($identifier, new ObjectType($frontendControlClassName));
 
-            var_dump($identifier);
-            var_dump($frontendControlClassName);
+            if ($plugin->isGlobalPlugin()) {
+                $this->globalPlugins[] = $pluginComponent;
+            }
 
-            $this->globalPlugins[] = new Component($identifier, new ObjectType($frontendControlClassName));
+            $allPluginComponents[] = $pluginComponent;
 
             $frontendControlClassReflection = new ReflectionClass($frontendControlClassName);
             $frontendControlClassFileName = $frontendControlClassReflection->getFileName();
@@ -78,8 +75,8 @@ final class NotCmsPluginLatteTemplateResolver implements CustomLatteTemplateReso
         }
 
         // second level of subcomponents
-        foreach ($this->globalPlugins as $globalPlugin) {
-            $globalPlugin->addSubcomponents($this->globalPlugins);
+        foreach ($allPluginComponents as $pluginComponent) {
+            $pluginComponent->addSubcomponents($this->globalPlugins);
         }
 
         return $controls;

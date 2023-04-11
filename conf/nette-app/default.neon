@@ -5,6 +5,7 @@ parameters:
         - %currentWorkingDirectory%/app
     latte:
         presenterFactoryBootstrap: %rootDir%/../../efabrica/phpstan-config/includes/nette-app/presenter_factory.php
+#        reportUnanalysedTemplates: true # for testing purpose
         macros:
             - Efabrica\NeoForms\NeoFormExtension::install
             - Efabrica\Cms\Core\Macro\NotcmsMacroSet::install
@@ -19,12 +20,13 @@ parameters:
         warningPatterns:
             - '/Cannot automatically resolve latte template from expression\./'
             - '/Cannot resolve rendered latte template\./'
+            - '/Rendered latte template default\.latte does not exist\./'
 
 services:
     - Efabrica\PhpstanConfig\NotCms\GlobalPluginsLoader(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
 
-    # NotCMS plugins resolver
-#    - Efabrica\PhpstanConfig\LatteTemplateResolver\NotCmsPluginLatteTemplateResolver(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
+    # NotCMS plugin resolvers
+    - Efabrica\PhpstanConfig\LatteTemplateResolver\NotCmsMultiTemplatePluginLatteTemplateResolver(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
 
     # Component collectors
     - Efabrica\PhpstanConfig\LatteContext\Collector\ComponentCollector\GridComponentCollector
