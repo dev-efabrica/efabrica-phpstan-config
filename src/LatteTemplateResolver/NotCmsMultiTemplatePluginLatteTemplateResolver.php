@@ -13,7 +13,11 @@ use Efabrica\PHPStanLatte\Template\Component;
 use Efabrica\PHPStanLatte\Template\ItemCombinator;
 use Efabrica\PHPStanLatte\Template\Template;
 use Efabrica\PHPStanLatte\Template\TemplateContext;
+use Efabrica\PHPStanLatte\Template\Variable;
+use PHPStan\Type\ArrayType;
+use PHPStan\Type\MixedType;
 use PHPStan\Type\ObjectType;
+use PHPStan\Type\StringType;
 use ReflectionClass;
 
 final class NotCmsMultiTemplatePluginLatteTemplateResolver implements CustomLatteTemplateResolverInterface
@@ -90,18 +94,28 @@ final class NotCmsMultiTemplatePluginLatteTemplateResolver implements CustomLatt
         $variableFinder = $latteContext->variableFinder();
         $variables = $variableFinder->find($controlClass, 'render', 'preparePluginRender');
 
+        // fields assigned in trait are not included... we have to hack it here
+        $variables[] = new Variable('fields', new ArrayType(new StringType(), new MixedType()));
+
+        $templatePaths = [];
         $templatePathFinder = $latteContext->templatePathFinder();
-        $templatePaths = $templatePathFinder->find($controlClass, 'render');
+        foreach ($templatePathFinder->find($controlClass, 'render') as $templatePath) {
+            $templatePath = realpath($templatePath);
+            if ($templatePath) {
+                $templatePaths[] = $templatePath;
+            }
+        }
 
         $templates = $params[self::TEMPLATES];
         foreach ($templates as $template) {
-            $templatePaths[] = $template['path'];
+            $templatePath = realpath($template['path']);
+            if ($templatePath) {
+                $templatePaths[] = $templatePath;
+            }
         }
-        $templatePathFinder = $latteContext->templatePathFinder();
-        foreach ($templatePathFinder->find($controlClass, 'render') as $templatePath) {
-            $templatePaths[] = $templatePath;
-        }
+
         $templatePaths = array_unique(array_filter($templatePaths));
+
 
         $componentsFinder = $latteContext->componentFinder();
         $components = ItemCombinator::merge($componentsFinder->find($controlClass, 'init', 'beforeRender'), $this->globalPlugins);
