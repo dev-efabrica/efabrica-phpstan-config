@@ -96,6 +96,9 @@ final class NotCmsMultiTemplatePluginLatteTemplateResolver implements CustomLatt
 
         // fields assigned in trait are not included... we have to hack it here
         $variables[] = new Variable('fields', new ArrayType(new StringType(), new MixedType()));
+        $variables[] = new Variable('presenter', new ObjectType('Nette\Application\UI\Presenter'));
+        $variables[] = new Variable('control', new ObjectType($controlClass));
+        $variables[] = new Variable('flashes', new ArrayType(new MixedType(), new ObjectType('stdClass')));
 
         $templatePaths = [];
         $templatePathFinder = $latteContext->templatePathFinder();
