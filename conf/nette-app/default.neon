@@ -20,6 +20,7 @@ parameters:
         warningPatterns:
             - '/Cannot automatically resolve latte template from expression\./'
             - '/Cannot resolve rendered latte template\./'
+            - '/Cannot resolve included latte template\./'
             - '/Rendered latte template default\.latte does not exist\./'
 
 services:
