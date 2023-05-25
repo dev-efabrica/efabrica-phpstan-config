@@ -11,7 +11,7 @@
         "spaze/phpstan-disallowed-calls": "^2.0",
         "pepakriz/phpstan-exception-rules": "^0.12",
         "efabrica/phpstan-rules": "^0.5.0",
-        "efabrica/phpstan-latte": "^0.11"
+        "efabrica/phpstan-latte": "^0.12"
     },
     "autoload": {
         "psr-4": {
