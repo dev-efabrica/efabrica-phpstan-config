@@ -6,4 +6,5 @@ parameters:
 
 includes:
     - ../default.neon
+    - ../../includes/nette-app/symfony_console_application.php
 #    - ../../includes/nette-app/traits.php

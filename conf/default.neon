@@ -87,6 +87,7 @@ parameters:
 includes:
     - ../../../phpstan/phpstan-nette/extension.neon
     - ../../../phpstan/phpstan-nette/rules.neon
+    - ../../../phpstan/phpstan-symfony/extension.neon
     - ../../../phpstan/phpstan-webmozart-assert/extension.neon
     - ../../../spaze/phpstan-disallowed-calls/extension.neon
     - ../../../efabrica/phpstan-rules/extension.neon
