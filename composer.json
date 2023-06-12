@@ -5,13 +5,14 @@
     "require": {
         "phpstan/phpstan": "^1.10.6",
         "phpstan/phpstan-nette": "^1.0",
+        "phpstan/phpstan-symfony": "^1.3",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-strict-rules": "^1.0",
         "phpstan/phpstan-webmozart-assert": "^1.0",
         "spaze/phpstan-disallowed-calls": "^2.0",
         "pepakriz/phpstan-exception-rules": "^0.12",
         "efabrica/phpstan-rules": "^0.5.0",
-        "efabrica/phpstan-latte": "^0.12"
+        "efabrica/phpstan-latte": "^0.13.1"
     },
     "autoload": {
         "psr-4": {
