@@ -24,5 +24,4 @@ class PluginPropertiesExtension implements ReadWritePropertiesExtension
     {
         return !$property->isPublic() && strpos($property->getDocComment() ?? '', '@plugin-init ') !== false;
     }
-
 }
