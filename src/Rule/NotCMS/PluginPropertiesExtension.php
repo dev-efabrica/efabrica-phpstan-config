@@ -6,6 +6,7 @@ namespace PHPStanConfig\Rule\NotCMS;
 
 use PHPStan\Reflection\PropertyReflection;
 use PHPStan\Rules\Properties\ReadWritePropertiesExtension;
+use PHPStan\Type\ObjectType;
 use function strpos;
 
 class PluginPropertiesExtension implements ReadWritePropertiesExtension
@@ -22,7 +23,9 @@ class PluginPropertiesExtension implements ReadWritePropertiesExtension
 
     public function isInitialized(PropertyReflection $property, string $propertyName): bool
     {
-        if (!$property->getDeclaringClass() instanceof Efabrica\Cms\Core\Plugin\BasePluginControl) {
+        $propertyClass = $property->getDeclaringClass()->getName();
+        $basePluginControlClass = '\Efabrica\Cms\Core\Plugin\BasePluginControl';
+        if (!(new ObjectType($basePluginControlClass))->isSuperTypeOf(new ObjectType($propertyClass))->yes()) {
             return false;
         }
 
