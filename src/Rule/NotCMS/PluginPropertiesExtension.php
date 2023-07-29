@@ -22,8 +22,7 @@ class PluginPropertiesExtension implements ReadWritePropertiesExtension
 
     public function isInitialized(PropertyReflection $property, string $propertyName): bool
     {
-        return $property->isPublic() &&
-            strpos($property->getDocComment() ?? '', '@plugin-initialized') !== false;
+        return !$property->isPublic() && strpos($property->getDocComment() ?? '', '@plugin-init') !== false;
     }
 
 }

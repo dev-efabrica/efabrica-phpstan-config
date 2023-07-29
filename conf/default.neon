@@ -87,7 +87,7 @@ services:
     -
         factory: PHPStanConfig\Rule\NotCMS\PluginPropertiesExtension
         tags:
-            - phpstan.rules.rule
+            - phpstan.properties.readWriteExtension
 
 includes:
     - ../../../phpstan/phpstan-nette/extension.neon
