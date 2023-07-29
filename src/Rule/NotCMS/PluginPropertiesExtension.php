@@ -22,6 +22,10 @@ class PluginPropertiesExtension implements ReadWritePropertiesExtension
 
     public function isInitialized(PropertyReflection $property, string $propertyName): bool
     {
+        if (!$property->getDeclaringClass() instanceof Efabrica\Cms\Core\Plugin\BasePluginControl) {
+            return false;
+        }
+
         return !$property->isPublic() && strpos($property->getDocComment() ?? '', '@plugin-init ') !== false;
     }
 }
