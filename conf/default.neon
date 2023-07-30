@@ -83,6 +83,11 @@ parameters:
                     type: string
                     tip: 'Always use some column name or *. Without it, all items are selected and counted in php which causes performance issues.'
 
+services:
+    -
+        factory: PHPStanConfig\Rule\NotCMS\PluginPropertiesExtension
+        tags:
+            - phpstan.properties.readWriteExtension
 
 includes:
     - ../../../phpstan/phpstan-nette/extension.neon
