@@ -22,6 +22,8 @@ parameters:
             - '/Cannot resolve rendered latte template\./'
             - '/Cannot resolve included latte template\./'
             - '/Rendered latte template default\.latte does not exist\./'
+        features:
+            transformDynamicFormControlNamesToString: true
 
 services:
     - Efabrica\PhpstanConfig\NotCms\GlobalPluginsLoader(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
