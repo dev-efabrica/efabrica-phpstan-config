@@ -13,7 +13,6 @@ use PhpParser\Node\Stmt\Class_;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\ReflectionProvider;
 use PHPStan\Type\ObjectType;
-use PHPStan\Type\VerbosityLevel;
 
 /**
  * @extends AbstractLatteContextCollector<Node, CollectedComponent>
