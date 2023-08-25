@@ -91,3 +91,4 @@ includes:
     - ../../../efabrica/phpstan-latte/rules.neon
     - ../../../phpstan/phpstan-strict-rules/rules.neon
     - ../includes/conditional-phpstan.php
+    - ../includes/conditional-phpstan-latte.php
