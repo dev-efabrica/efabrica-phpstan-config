@@ -11,8 +11,6 @@ parameters:
             - Efabrica\NeoForms\DI\NeoFormMacroSet::install
             - Efabrica\Cms\Core\Macro\NotcmsMacroSet::install
             - Tomaj\NetteApi\Link\ApiLinkMacro::install
-        extensions:
-            - Efabrica\NeoForms\DI\NeoFormLatteExtension()
         tmpDir: %currentWorkingDirectory%/temp/phpstan-latte
         collectedPaths:
             - %currentWorkingDirectory%/vendor/notcms/
