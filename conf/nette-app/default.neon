@@ -8,6 +8,7 @@ parameters:
         reportUnanalysedTemplates: true
         macros:
             - Efabrica\NeoForms\NeoFormExtension::install
+            - Efabrica\NeoForms\DI\NeoFormMacroSet::install
             - Efabrica\Cms\Core\Macro\NotcmsMacroSet::install
             - Tomaj\NetteApi\Link\ApiLinkMacro::install
         tmpDir: %currentWorkingDirectory%/temp/phpstan-latte
