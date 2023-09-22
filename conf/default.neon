@@ -83,6 +83,10 @@ parameters:
                     type: string
                     tip: 'Always use some column name or *. Without it, all items are selected and counted in php which causes performance issues.'
 
+    translateCalls:
+        - Nette\Localization\Translator::translate
+        - Nette\Localization\ITranslator::translate
+
 services:
     -
         factory: PHPStanConfig\Rule\NotCMS\PluginPropertiesExtension
