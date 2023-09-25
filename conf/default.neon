@@ -74,6 +74,10 @@ parameters:
                     type: string
                     tip: 'Always use some column name or *. Without it, all items are selected and counted in php which causes performance issues.'
 
+    translateCalls:
+        - Nette\Localization\Translator::translate
+        - Nette\Localization\ITranslator::translate
+
 services:
     -
         factory: Efabrica\PhpstanConfig\Rule\NotCMS\PluginPropertiesExtension
@@ -91,3 +95,5 @@ includes:
     - ../../../efabrica/phpstan-latte/rules.neon
     - ../../../phpstan/phpstan-strict-rules/rules.neon
     - ../includes/conditional-phpstan.php
+    - ../includes/conditional-phpstan-latte.php
+    - ../includes/phpstan-latte-command.php

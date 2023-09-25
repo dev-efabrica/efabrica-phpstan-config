@@ -55,7 +55,7 @@ final class NotCmsMultiTemplatePluginLatteTemplateResolver implements CustomLatt
                 continue;
             }
 
-            $templatePaths = $plugin->getTemplates();
+            $templates = $plugin->getTemplates();
 
             $reflectionClass = new ReflectionClass($plugin);
             $frontendControlClassProperty = $reflectionClass->getProperty('frontendControlClass');
@@ -74,7 +74,7 @@ final class NotCmsMultiTemplatePluginLatteTemplateResolver implements CustomLatt
             $frontendControlClassFileName = $frontendControlClassReflection->getFileName();
             $controls[] = new CollectedResolvedNode(self::class, $frontendControlClassFileName, [
                 self::CONTROL_CLASS => $frontendControlClassName,
-                self::TEMPLATES => $templatePaths,
+                self::TEMPLATES => $templates,
             ]);
         }
 
@@ -109,10 +109,12 @@ final class NotCmsMultiTemplatePluginLatteTemplateResolver implements CustomLatt
             }
         }
 
+        $basePath = realpath($_SERVER['argv'][2]);
+
         $templates = $params[self::TEMPLATES];
         foreach ($templates as $template) {
             $templatePath = realpath($template['path']);
-            if ($templatePath) {
+            if ($templatePath && str_starts_with($templatePath, $basePath)) {
                 $templatePaths[] = $templatePath;
             }
         }

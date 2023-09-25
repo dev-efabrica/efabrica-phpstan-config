@@ -5,7 +5,7 @@ parameters:
         - %currentWorkingDirectory%/app
     latte:
         presenterFactoryBootstrap: %rootDir%/../../efabrica/phpstan-config/includes/nette-app/presenter_factory.php
-#        reportUnanalysedTemplates: true # for testing purpose
+        reportUnanalysedTemplates: true
         macros:
             - Efabrica\NeoForms\NeoFormExtension::install
             - Efabrica\NeoForms\DI\NeoFormMacroSet::install
@@ -23,8 +23,10 @@ parameters:
             - '/Cannot resolve rendered latte template\./'
             - '/Cannot resolve included latte template\./'
             - '/Rendered latte template default\.latte does not exist\./'
+            - '/Latte template (.*?) was not analysed\./'
         features:
             transformDynamicFormControlNamesToString: true
+#            analyseLayoutFiles: true   # temporary disabled, check in provys why it takes infinite time to analyse
 
 services:
     - Efabrica\PhpstanConfig\NotCms\GlobalPluginsLoader(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
