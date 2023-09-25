@@ -26,7 +26,7 @@ parameters:
             - '/Latte template (.*?) was not analysed\./'
         features:
             transformDynamicFormControlNamesToString: true
-            analyseLayoutFiles: true
+#            analyseLayoutFiles: true   # temporary disabled, check in provys why it takes infinite time to analyse
 
 services:
     - Efabrica\PhpstanConfig\NotCms\GlobalPluginsLoader(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
