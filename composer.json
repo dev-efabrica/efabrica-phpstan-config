@@ -11,7 +11,7 @@
         "phpstan/phpstan-webmozart-assert": "^1.0",
         "spaze/phpstan-disallowed-calls": "^2.0",
         "pepakriz/phpstan-exception-rules": "^0.12",
-        "efabrica/phpstan-rules": "^0.6.0"
+        "efabrica/phpstan-rules": "^0.7.0"
     },
     "autoload": {
         "psr-4": {

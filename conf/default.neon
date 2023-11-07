@@ -87,6 +87,9 @@ parameters:
         - Nette\Localization\Translator::translate
         - Nette\Localization\ITranslator::translate
 
+    allowedTranslateConcatenationPatterns:
+        - '[\s]*<.*?>[\s]*<\/.*?>[\s]*' # for example icons in buttons
+
 services:
     -
         factory: PHPStanConfig\Rule\NotCMS\PluginPropertiesExtension
