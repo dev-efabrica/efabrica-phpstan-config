@@ -1,0 +1,7 @@
+parameters:
+    paths:
+        - %currentWorkingDirectory%/src
+
+includes:
+    - ../db.selection.as.template.neon
+    - ../../includes/nette-lib/traits.php

@@ -1,0 +1,6 @@
+parameters:
+    level: 3
+
+includes:
+    - default.neon
+    - ../../includes/strict-rules/level.3.neon

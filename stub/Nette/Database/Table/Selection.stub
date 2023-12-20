@@ -1,0 +1,48 @@
+<?php
+
+namespace Nette\Database\Table;
+
+/**
+ * @template TRow of ActiveRow
+ * @phpstan-implements \Iterator<string, TRow>
+ * @phpstan-implements \ArrayAccess<string, TRow>
+ * @phpstan-implements IRowContainer<string, TRow>
+ */
+class Selection implements \Iterator, \ArrayAccess, IRowContainer
+{
+    /**
+     * @phpstan-param positive-int|0|null $limit
+     * @phpstan-param positive-int|0|null $offset
+     * @return static
+     */
+    public function limit(?int $limit, int $offset = null)
+    {
+    }
+
+    /**
+     * @phpstan-param positive-int|0 $page
+     * @phpstan-param positive-int|0 $itemsPerPage
+     * @param int $numOfPages [optional]
+     * @return static
+     */
+    public function page(int $page, int $itemsPerPage, &$numOfPages = null)
+    {
+    }
+
+    /**
+     * @param string|array<string|int,mixed> $condition
+     * @param mixed $params
+     * @return static
+     */
+    public function where($condition, ...$params)
+    {
+    }
+
+    /**
+     * @param string $column
+     * @return positive-int|0
+     */
+    public function count($column = null)
+    {
+    }
+}
