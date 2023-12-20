@@ -1,0 +1,6 @@
+parameters:
+    level: 6
+
+includes:
+    - default.neon
+    - ../../includes/strict-rules/level.6.neon

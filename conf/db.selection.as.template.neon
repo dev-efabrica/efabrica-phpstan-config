@@ -1,0 +1,116 @@
+includes:
+	- base.neon
+
+parameters:
+	additionalConstructors:
+		- Nette\Application\UI\Presenter::startup
+	exceptions:
+		uncheckedExceptionClasses:
+			- 'Nette\InvalidArgumentException'
+	stubFiles:
+		- ../../stub/Nette/Database/ResultSet.stub
+		- ../../stub/Nette/Database/Table/IRowContainer.stub
+		- ../../stub/Nette/Database/Table/Selection.stub
+		- ../../../phpstan/phpstan-nette/stubs/Application/Routers/RouteList.stub
+		- ../../../phpstan/phpstan-nette/stubs/Application/UI/Component.stub
+		- ../../../phpstan/phpstan-nette/stubs/Application/UI/Multiplier.stub
+		- ../../../phpstan/phpstan-nette/stubs/ComponentModel/Component.stub
+		- ../../../phpstan/phpstan-nette/stubs/ComponentModel/Container.stub
+		- ../../../phpstan/phpstan-nette/stubs/ComponentModel/IComponent.stub
+		- ../../../phpstan/phpstan-nette/stubs/ComponentModel/IContainer.stub
+		- ../../../phpstan/phpstan-nette/stubs/Database/Table/ActiveRow.stub
+		- ../../../phpstan/phpstan-nette/stubs/Forms/Container.stub
+		- ../../../phpstan/phpstan-nette/stubs/Forms/Form.stub
+		- ../../../phpstan/phpstan-nette/stubs/Forms/Rules.stub
+		- ../../../phpstan/phpstan-nette/stubs/Http/SessionSection.stub
+		- ../../../phpstan/phpstan-nette/stubs/Routing/Router.stub
+		- ../../../phpstan/phpstan-nette/stubs/Utils/ArrayHash.stub
+		- ../../../phpstan/phpstan-nette/stubs/Utils/Html.stub
+		- ../../../phpstan/phpstan-nette/stubs/Utils/Paginator.stub
+		- ../../../phpstan/phpstan-nette/stubs/Utils/Random.stub
+	universalObjectCratesClasses:
+		- Nette\Application\UI\ITemplate
+		- Nette\Application\UI\Template
+		- Nette\Bridges\ApplicationLatte\Template
+		- Nette\Database\IRow
+		- Nette\Http\SessionSection
+		- Nette\Security\Identity
+		- Nette\Security\SimpleIdentity
+	featureToggles:
+		skipCheckGenericClasses:
+			- Nette\Application\UI\Multiplier
+	earlyTerminatingMethodCalls:
+		Nette\Application\UI\Component:
+			- error
+		Nette\Application\UI\Presenter:
+			- redirect
+			- redirectUrl
+			- sendJson
+			- sendPayload
+			- sendResponse
+			- sendTemplate
+			- terminate
+			- forward
+
+services:
+	-
+		class: PHPStan\Reflection\Nette\HtmlClassReflectionExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension
+			- phpstan.broker.methodsClassReflectionExtension
+
+	-
+		class: PHPStan\Reflection\Nette\NetteObjectClassReflectionExtension
+		tags:
+			- phpstan.broker.propertiesClassReflectionExtension
+			- phpstan.broker.methodsClassReflectionExtension
+
+	-
+		class: PHPStan\Type\Nette\ComponentModelArrayAccessDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\ComponentModelDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\ComponentLookupDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\ComponentGetPresenterDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\FormsBaseControlDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\PresenterGetSessionReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\ServiceLocatorDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\FormContainerUnsafeValuesDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Type\Nette\FormContainerValuesDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Rule\Nette\PresenterInjectedPropertiesExtension
+		tags:
+			- phpstan.properties.readWriteExtension
