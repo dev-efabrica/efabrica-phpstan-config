@@ -8,9 +8,9 @@ parameters:
 		uncheckedExceptionClasses:
 			- 'Nette\InvalidArgumentException'
 	stubFiles:
-		- ../../stub/Nette/Database/ResultSet.stub
-		- ../../stub/Nette/Database/Table/IRowContainer.stub
-		- ../../stub/Nette/Database/Table/Selection.stub
+		- ../stub/Nette/Database/ResultSet.stub
+		- ../stub/Nette/Database/Table/IRowContainer.stub
+		- ../stub/Nette/Database/Table/Selection.stub
 		- ../../../phpstan/phpstan-nette/stubs/Application/Routers/RouteList.stub
 		- ../../../phpstan/phpstan-nette/stubs/Application/UI/Component.stub
 		- ../../../phpstan/phpstan-nette/stubs/Application/UI/Multiplier.stub
