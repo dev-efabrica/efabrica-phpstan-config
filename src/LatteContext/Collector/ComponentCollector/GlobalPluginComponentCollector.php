@@ -39,8 +39,11 @@ final class GlobalPluginComponentCollector extends AbstractLatteContextCollector
     public function collectData(Node $node, Scope $scope): ?array
     {
         $className = $this->nameResolver->resolve($node->namespacedName);
+        if ($className === null) {
+            return null;
+        }
+        
         $classType = new ObjectType($className);
-
         if (!$classType->isInstanceOf('Efabrica\Cms\Core\Plugin\FrontendPluginControl')->yes()) {
             return null;
         }
