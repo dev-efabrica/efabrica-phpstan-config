@@ -104,4 +104,3 @@ includes:
     - ../../../efabrica/phpstan-rules/extension.neon
     - ../../../efabrica/phpstan-rules/rules.neon
     - ../../../phpstan/phpstan-strict-rules/rules.neon
-    - ../includes/conditional-phpstan.php
