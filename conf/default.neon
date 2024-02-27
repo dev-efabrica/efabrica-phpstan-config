@@ -81,12 +81,6 @@ parameters:
     allowedTranslateConcatenationPatterns:
         - '[\s]*<.*?>[\s]*<\/.*?>[\s]*' # for example icons in buttons
 
-services:
-    -
-        factory: Efabrica\PhpstanConfig\Rule\NotCMS\PluginPropertiesExtension
-        tags:
-            - phpstan.properties.readWriteExtension
-
 includes:
     - ../../../phpstan/phpstan-nette/extension.neon
     - base.neon

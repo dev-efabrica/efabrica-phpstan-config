@@ -92,7 +92,7 @@ parameters:
 
 services:
     -
-        factory: PHPStanConfig\Rule\NotCMS\PluginPropertiesExtension
+        factory: Efabrica\PhpstanConfig\Rule\NotCMS\PluginPropertiesExtension
         tags:
             - phpstan.properties.readWriteExtension
 
