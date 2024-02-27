@@ -1,0 +1,6 @@
+parameters:
+    level: max
+
+includes:
+    - default.neon
+    - ../../includes/strict-rules/level.max.neon

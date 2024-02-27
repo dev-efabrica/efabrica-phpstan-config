@@ -1,0 +1,12 @@
+<?php
+
+namespace Nette\Database\Table;
+
+/**
+ * @template TKey
+ * @template TValue
+ * @phpstan-extends \Nette\Database\IRowContainer<TKey, TValue>
+ */
+interface IRowContainer extends \Nette\Database\IRowContainer
+{
+}

@@ -1,0 +1,30 @@
+<?php
+
+namespace Nette\Database;
+
+/**
+ * @phpstan-extends \Traversable<string, mixed>
+ * @phpstan-extends \ArrayAccess<string, mixed>
+ */
+interface IRow extends \Traversable, \ArrayAccess
+{
+
+}
+
+/**
+ * @template TKey
+ * @template TValue
+ * @phpstan-extends \Traversable<TKey, TValue>
+ */
+interface IRowContainer extends \Traversable
+{
+
+}
+
+/**
+ * @phpstan-implements \Iterator<int, IRow>
+ */
+class ResultSet implements \Iterator
+{
+
+}

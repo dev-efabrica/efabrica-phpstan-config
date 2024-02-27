@@ -1,4 +1,13 @@
 parameters:
+    ignoreErrors:
+        -   # ignoring phpstan-latte annotations while we don't have extension turned on - TODO remove when phpstan-latte is merged
+            messages:
+                - '#Unknown PHPDoc tag: @phpstan-latte-template#'
+                - '#Unknown PHPDoc tag: @phpstan-latte-var#'
+                - '#Unknown PHPDoc tag: @phpstan-latte-component#'
+                - '#Unknown PHPDoc tag: @phpstan-latte-ignore#'
+            reportUnmatched: false
+
     customRulesetUsed: true
     inferPrivatePropertyTypeFromConstructor: true
     checkMissingIterableValueType: false
@@ -83,13 +92,16 @@ parameters:
 
 services:
     -
-        factory: Efabrica\PhpstanConfig\Rule\NotCMS\PluginPropertiesExtension
+        factory: PHPStanConfig\Rule\NotCMS\PluginPropertiesExtension
         tags:
             - phpstan.properties.readWriteExtension
 
 includes:
-    - ../../../phpstan/phpstan-nette/extension.neon
-    - base.neon
-    - ../includes/conditional-phpstan.php
-    - ../includes/conditional-phpstan-latte.php
-    - ../includes/phpstan-latte-command.php
+    - ../../../phpstan/phpstan-nette/rules.neon
+    - ../../../phpstan/phpstan-symfony/extension.neon
+    - ../../../phpstan/phpstan-webmozart-assert/extension.neon
+    - ../../../spaze/phpstan-disallowed-calls/extension.neon
+    - ../../../efabrica/phpstan-rules/extension.neon
+    - ../../../efabrica/phpstan-rules/rules.neon
+    - ../../../efabrica/phpstan-latte/rules.neon
+    - ../../../phpstan/phpstan-strict-rules/rules.neon
