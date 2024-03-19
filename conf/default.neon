@@ -1,4 +1,3 @@
 includes:
     - ../../../phpstan/phpstan-nette/extension.neon
     - base.neon
-    - ../includes/conditional-phpstan.php
