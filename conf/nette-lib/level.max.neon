@@ -4,3 +4,4 @@ parameters:
 includes:
     - default.neon
     - ../../includes/strict-rules/level.max.neon
+    - ../../includes/conditional-phpstan.php
