@@ -1,3 +1,86 @@
+parameters:
+    customRulesetUsed: true
+    inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    checkUninitializedProperties: true
+    strictRules:
+        # turn off strict rules
+        allRules: false
+
+    # turn off strict rules parameters
+    polluteScopeWithLoopInitialAssignments: true
+    polluteScopeWithAlwaysIterableForeach: true
+    checkAlwaysTrueCheckTypeFunctionCall: false
+    checkAlwaysTrueInstanceof: false
+    checkAlwaysTrueStrictComparison: false
+    checkAlwaysTrueLooseComparison: false
+    checkExplicitMixedMissingReturn: false
+    reportMaybesInMethodSignatures: false
+    reportStaticMethodSignatures: false
+    reportMaybesInPropertyPhpDocTypes: false
+
+    disallowedFunctionCalls:
+        -
+            function: 'print_r()'
+            message: 'use some logger instead'
+            allowParamsAnywhere:
+                2: true
+        -
+            function: 'var_dump()'
+            message: 'use some logger instead'
+        -
+            function: 'var_export()'
+            message: 'use some logger instead'
+            allowParamsAnywhere:
+                2: true
+        -
+            function: 'dump()'
+            message: 'use some logger instead'
+        -
+            function: 'dumpe()'
+            message: 'use some logger instead'
+        -
+            function: 'bdump()'
+            message: 'use some logger instead'
+
+    disallowedStaticCalls:
+        -
+            method: 'Tracy\Debugger::dump()'
+            message: 'use some logger instead'
+        -
+            method: 'Tracy\Debugger::barDump()'
+            message: 'use some logger instead'
+
+    disabledMethodCalls:
+        -
+            context: 'Efabrica\Cms\Core\Plugin\PluginDefinitionInterface::pageConfiguration'
+            disabled: 'Efabrica\Cms\Core\Plugin\Config\PluginConfigItem::setRequired'
+
+    forbiddenConstructorParametersTypes:
+        -
+            context: Efabrica\Cms\Core\Plugin\FrontendPluginControl
+            forbiddenTypes:
+                -
+                    type: Efabrica\Cms\Core\Pages\Repository\PageRepository
+                    tip: 'Use Efabrica\Cms\Core\Pages\Repository\PageFrontendRepository instead.'
+
+    requiredParametersInMethodCalls:
+        -
+            context: 'Nette\Database\Table\Selection::count'
+            parameters:
+                -
+                    name: column
+                    type: string
+                    tip: 'Always use some column name or *. Without it, all items are selected and counted in php which causes performance issues.'
+
+    translateCalls:
+        - Nette\Localization\Translator::translate
+        - Nette\Localization\ITranslator::translate
+
+    allowedTranslateConcatenationPatterns:
+        - '[\s]*<.*?>[\s]*<\/.*?>[\s]*' # for example icons in buttons
+
 includes:
     - ../../../phpstan/phpstan-nette/extension.neon
     - ../../../sidz/phpstan-rules/rules.neon

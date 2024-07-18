@@ -3,7 +3,7 @@
     "description": "Custom configs for PHPstan",
     "keywords": ["PHPstan","config"],
     "require": {
-        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan": "^1.10.6",
         "phpstan/phpstan-nette": "^1.0",
         "phpstan/phpstan-symfony": "^1.3",
         "phpstan/phpstan-deprecation-rules": "^1.0",
@@ -12,6 +12,7 @@
         "spaze/phpstan-disallowed-calls": "^2.0",
         "pepakriz/phpstan-exception-rules": "^0.12",
         "efabrica/phpstan-rules": "^0.7.0",
+        "efabrica/phpstan-latte": "^0.17.1",
         "sidz/phpstan-rules": "^0.4.5"
     },
     "autoload": {

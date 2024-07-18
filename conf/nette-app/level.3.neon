@@ -5,3 +5,5 @@ includes:
     - default.neon
     - ../../includes/strict-rules/level.3.neon
     - ../../includes/conditional-phpstan.php
+    - ../../includes/conditional-phpstan-latte.php
+    - ../../includes/phpstan-latte-command.php

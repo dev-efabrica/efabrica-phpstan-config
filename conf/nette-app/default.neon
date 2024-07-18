@@ -3,8 +3,47 @@ parameters:
         - %rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php
     paths:
         - %currentWorkingDirectory%/app
+    latte:
+        presenterFactoryBootstrap: %rootDir%/../../efabrica/phpstan-config/includes/nette-app/presenter_factory.php
+        reportUnanalysedTemplates: true
+        macros:
+            - Efabrica\NeoForms\NeoFormExtension::install
+            - Efabrica\NeoForms\DI\NeoFormMacroSet::install
+            - Efabrica\Cms\Core\Macro\NotcmsMacroSet::install
+            - Tomaj\NetteApi\Link\ApiLinkMacro::install
+        tmpDir: %currentWorkingDirectory%/temp/phpstan-latte
+        collectedPaths:
+            - %currentWorkingDirectory%/vendor/notcms/
+            - %currentWorkingDirectory%/vendor/efabrica/
+        errorPatternsToIgnore:
+            - '/Instanceof between Efabrica\\NeoForms\\Build\\NeoForm and Efabrica\\NeoForms\\Build\\NeoFormControl will always evaluate to false\./'
+            - '/Cannot resolve latte template for (.*?)::renderPlugin\(\)\./'
+        warningPatterns:
+            - '/Cannot automatically resolve latte template from expression\./'
+            - '/Cannot resolve rendered latte template\./'
+            - '/Cannot resolve included latte template\./'
+            - '/Rendered latte template default\.latte does not exist\./'
+            - '/Latte template (.*?) was not analysed\./'
+        features:
+            transformDynamicFormControlNamesToString: true
+#            analyseLayoutFiles: true   # temporary disabled, check in provys why it takes infinite time to analyse
+
+services:
+    - Efabrica\PhpstanConfig\NotCms\GlobalPluginsLoader(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
+
+    # NotCMS plugin resolvers
+    - Efabrica\PhpstanConfig\LatteTemplateResolver\NotCmsMultiTemplatePluginLatteTemplateResolver(%rootDir%/../../efabrica/phpstan-config/includes/nette-app/bootstrap.php)
+
+    # Component collectors
+    - Efabrica\PhpstanConfig\LatteContext\Collector\ComponentCollector\GridComponentCollector
+    - Efabrica\PhpstanConfig\LatteContext\Collector\ComponentCollector\GlobalPluginComponentCollector
+
+    # TemplatePathCollector for plugins
+    - Efabrica\PhpstanConfig\LatteContext\Collector\TemplatePathCollector\PluginTemplateFilePathCollector
 
 includes:
     - ../default.neon
     - ../../includes/nette-app/symfony_console_application.php
 #    - ../../includes/nette-app/traits.php
+    - ../../includes/nette-app/filters.php
+    - ../../includes/nette-app/variables.php

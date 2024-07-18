@@ -92,7 +92,7 @@ parameters:
 
 services:
     -
-        factory: PHPStanConfig\Rule\NotCMS\PluginPropertiesExtension
+        factory: Efabrica\PhpstanConfig\Rule\NotCMS\PluginPropertiesExtension
         tags:
             - phpstan.properties.readWriteExtension
 
@@ -103,4 +103,5 @@ includes:
     - ../../../spaze/phpstan-disallowed-calls/extension.neon
     - ../../../efabrica/phpstan-rules/extension.neon
     - ../../../efabrica/phpstan-rules/rules.neon
+    - ../../../efabrica/phpstan-latte/rules.neon
     - ../../../phpstan/phpstan-strict-rules/rules.neon

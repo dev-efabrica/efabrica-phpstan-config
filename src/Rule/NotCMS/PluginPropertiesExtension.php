@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace PHPStanConfig\Rule\NotCMS;
+namespace Efabrica\PhpstanConfig\Rule\NotCMS;
 
 use PHPStan\Reflection\PropertyReflection;
 use PHPStan\Rules\Properties\ReadWritePropertiesExtension;
