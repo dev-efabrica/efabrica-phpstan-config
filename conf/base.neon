@@ -9,8 +9,10 @@ parameters:
             reportUnmatched: false
         -   # replacement for deprecated checkMissingIterableValueType: false
             identifier: missingType.iterableValue
+            reportUnmatched: false
         -   # replacement for deprecated checkGenericClassInNonGenericObjectType: false
             identifier: missingType.generics
+            reportUnmatched: false
 
     customRulesetUsed: true
     inferPrivatePropertyTypeFromConstructor: true
