@@ -7,11 +7,13 @@ parameters:
                 - '#Unknown PHPDoc tag: @phpstan-latte-component#'
                 - '#Unknown PHPDoc tag: @phpstan-latte-ignore#'
             reportUnmatched: false
+        -   # replacement for deprecated checkMissingIterableValueType: false
+            identifier: missingType.iterableValue
+        -   # replacement for deprecated checkGenericClassInNonGenericObjectType: false
+            identifier: missingType.generics
 
     customRulesetUsed: true
     inferPrivatePropertyTypeFromConstructor: true
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
     checkUninitializedProperties: true
     strictRules:
         # turn off strict rules
